@@ -1,3 +1,6 @@
 [submodule "puppet/modules/ohmyzsh"]
 	path = puppet/modules/ohmyzsh
 	url = https://github.com/zanloy/puppet-ohmyzsh.git
+[submodule "puppet/modules/yum"]
+	path = puppet/modules/yum
+	url = https://github.com/example42/puppet-yum.git
