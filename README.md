@@ -27,7 +27,7 @@ chsh -s /bin/zsh
 
 ## Troubleshooting
 ### httpd does not start 
-If httpd doesnt start, and you something like this in the log:
+If httpd doesnt start, and you see something like this in the log:
 
 ```
 [notice] SELinux policy enabled; httpd running as context unconfined_u:system_r:httpd_t:s0
