@@ -10,3 +10,6 @@
 [submodule "puppet/modules/puppi"]
 	path = puppet/modules/puppi
 	url = https://github.com/example42/puppi.git
+[submodule "puppet/modules/mongodb"]
+	path = puppet/modules/mongodb
+	url = https://github.com/puppetlabs/puppetlabs-mongodb.git
