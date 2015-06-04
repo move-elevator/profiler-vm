@@ -64,11 +64,6 @@ apache::vhost { 'xhgui.move-elevator.dev':
   require => [ Package['mod_fcgid', 'php56'], Exec['untar-xhgui'] ]
 }
 
-exec { 'untar-xhgui':
-  command => 'tar -xzf /vagrant/files/xhgui-0.4.0.tar.gz -C /var/www',
-  creates => '/var/www/xhgui-0.4.0'
-}
-
 file { '/var/log/httpd':
   mode => 755,
   require => Package['httpd']
@@ -76,4 +71,17 @@ file { '/var/log/httpd':
 
 exec { 'open-port-80':
   command => 'iptables -I INPUT 1 -i eth1 -p tcp --dport 80 -m state --state NEW,ESTABLISHED -j ACCEPT'
+}
+
+exec { 'untar-xhgui':
+  command => 'tar -xzf /vagrant/files/xhgui/xhgui-0.4.0.tar.gz -C /var/www',
+  creates => '/var/www/xhgui-0.4.0'
+}
+
+file { '/var/www/xhgui-0.4.0/external/header.php':
+  target => '/vagrant/files/xhgui/header.php'
+}
+
+file { '/var/www/xhgui-0.4.0/config/config.php':
+  target => '/vagrant/files/xhgui/config.php'
 }
