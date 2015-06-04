@@ -7,12 +7,15 @@
 ## Basics
 * OS: CentOS 6.6
 * IP: 192.168.33.230
-* Domain: profiler.move-elevator.dev
+* Domains / vHosts: 
+1. profiler.move-elevator.dev - vHost to test any application with included tools.
+2. xhgui.move-elevator.dev - vHost to see generated profiling data.
 
 ## Contents
 * [Apache](http://httpd.apache.org/) 2.2.15
-* [PHP](http://php.net/) 5.6 latest with xdebug and xhprof
-* [xhgui](https://github.com/perftools/xhgui) 
+* [PHP](http://php.net/) 5.6 latest with Xdebug and XHProf
+* [xhgui](https://github.com/perftools/xhgui) A graphical interface for XHProf data 
+* [mongoDB](https://www.mongodb.org/) Database for storing XHProf data
 
 ## Optional
 ### Change bash to oh-my-zsh shell
