@@ -79,9 +79,11 @@ exec { 'untar-xhgui':
 }
 
 file { '/var/www/xhgui-0.4.0/external/header.php':
-  target => '/vagrant/files/xhgui/header.php'
+  target => '/vagrant/files/xhgui/header.php',
+  require => Exec['untar-xhgui']
 }
 
 file { '/var/www/xhgui-0.4.0/config/config.php':
-  target => '/vagrant/files/xhgui/config.php'
+  target => '/vagrant/files/xhgui/config.php',
+  require => Exec['untar-xhgui']
 }
