@@ -4,13 +4,8 @@ return [
     'debug' => false,
     'mode' => 'development',
     'save.handler' => 'mongodb',
-    'db.host' => 'mongodb://127.0.0.1:27017',
+    'db.host' => 'mongodb://127.0.0.1:27017/xhprof',
     'db.db' => 'xhprof',
-    'db.options' => [
-        'username' => 'xhprof',
-        'password' => 'xhprof',
-        'db' => 'xhprof'
-    ],
     'templates.path' => dirname(__DIR__) . '/src/templates',
     'date.format' => 'M jS H:i:s',
     'detail.count' => 6,
