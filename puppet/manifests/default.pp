@@ -10,7 +10,9 @@ class { 'yum':
   stage => 'pre',
 }
 
-package {[ 'mod_fcgid', 'php56', 'php56-php-pecl-xhprof', 'php56-php-pecl-xdebug', 'php56-php-pecl-mongo']:
+package {[ 'mod_fcgid', 'php56', 'php56-php-pecl-xhprof', 'php56-php-pecl-xdebug', 'php56-php-pecl-mongo',
+  'php56-php-mcrypt'
+]:
   ensure  => 'installed',
   require => [ File['/etc/yum.repos.d/epel.repo'], File['/etc/yum.repos.d/remi.repo'] ]
 }
@@ -79,11 +81,30 @@ exec { 'untar-xhgui':
 }
 
 file { '/var/www/xhgui-0.4.0/external/header.php':
-  target => '/vagrant/files/xhgui/header.php',
+  source => '/vagrant/files/xhgui/header.php',
   require => Exec['untar-xhgui']
 }
 
 file { '/var/www/xhgui-0.4.0/config/config.php':
-  target => '/vagrant/files/xhgui/config.php',
+  source => '/vagrant/files/xhgui/config.php',
   require => Exec['untar-xhgui']
+}
+
+exec { 'install-composer':
+  command => 'curl -sS https://getcomposer.org/installer | php56',
+  cwd => '/usr/bin',
+  user => 'root',
+  group => 'root',
+  creates => '/usr/bin/composer.phar',
+  require => Package['php56']
+}
+
+exec { 'xhgui-composer-update':
+  command => 'php56 /usr/bin/composer.phar update',
+  user => 'root',
+  group => 'root',
+  environment => ['COMPOSER_HOME=/root/.composer'],
+  cwd => '/var/www/xhgui-0.4.0',
+  creates => '/var/www/xhgui-0.4.0/vendor',
+  require => [ Exec['install-composer'], Exec['untar-xhgui'] ]
 }
