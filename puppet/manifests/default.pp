@@ -46,6 +46,7 @@ apache::vhost { 'profiler.move-elevator.dev':
   directories => {
     path => '/var/www/profiler',
     options => ['ExecCGI', 'FollowSymLinks'],
+    allow_override => ['All'],
     fcgiwrapper => {
       command => '/usr/bin/php56-cgi',
     }
@@ -59,6 +60,7 @@ apache::vhost { 'xhgui.move-elevator.dev':
   directories => {
     path => '/var/www/xhgui-0.4.0',
     options => ['ExecCGI', 'FollowSymLinks'],
+    allow_override => ['All'],
     fcgiwrapper => {
       command => '/usr/bin/php56-cgi',
     }
