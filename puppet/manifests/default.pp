@@ -108,10 +108,10 @@ exec { 'xhgui-composer-update':
   environment => ['COMPOSER_HOME=/root/.composer'],
   cwd => '/var/www/xhgui-0.4.0',
   creates => '/var/www/xhgui-0.4.0/vendor',
-  require => [ Exec['install-composer'], Exec['untar-xhgui'] ]
+  require => [ Package['php56-php-mcrypt'], Exec['install-composer'], Exec['untar-xhgui'] ]
 }
 
 file { "/opt/remi/php56/root/etc/php.d/99-overwrites.ini":
   source => "/vagrant/files/99-overwrites.ini",
-  require => Package["php56"]
+  require => [ Package["php56"], Exec['xhgui-composer-update'] ]
 }
